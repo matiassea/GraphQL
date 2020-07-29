@@ -11,47 +11,16 @@ Ayuda para Pipefy
       id #Id de la phase
       name
       created_at
-#      description #campo en blanco
-#      cards_count
     }
     current_phase_age
     started_current_phase_at
-#    age
-#    comments{
-#      id
-#      author {
-#        id
-#      }
-#      author_name
-#      text
-#    }
-#    emailMessagingAddress
     inbox_emails{
-#      cc
       from
     }
-#    labels{
-#      name
-#    }
-#    comments_count
     assignees{
       id
       name
     }
-#    creatorEmail
-#    fields{
-#      date_value
-#      datetime_value
-#      phase_field {
-#        id
-#      }
-#      field{
-#        description
-#        id
-#        help
-#        internal_id
-#        label        
-#      }
     }
     }
 }
