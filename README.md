@@ -1,8 +1,11 @@
 # GraphQL
 Ayuda para Pipefy
 
+https://graphql.org/learn/queries/
 
-### Rescate de informacion de tarjeta
+
+
+### Rescate de informacion de tarjeta general
 ```
 {card(id:377184623)
   {
@@ -42,7 +45,8 @@ mutation{moveCardToPhase(
   }
 ```
 ### Para actualizar el campo de Asignacion
-### Se utilizara UpdateCardInput
+### Que solamente tiene la tarjeta cuando esta cerrada.
+
 Id = numero de tarjeta y en assignee_ids se coloca el numero de persona.
 ```
 mutation{updateCard(
@@ -56,6 +60,7 @@ mutation{updateCard(
   }
 ```
 ### Para actualizar un campo de la tarjeta
+### Se utilizara UpdateCardInput para modificar el Grupo de Colaboradores:, dado por el "label": del "fields", de "current_phase"
 ### En este caso asignacion
 
 El field_id se toma desde el id de los fields de la current_phase. Aun asi queda como assignees
@@ -73,7 +78,7 @@ mutation{updateCardField(
 }
   }
 ```
-
+### Para hacer la consulta de la card, rescatando el field a modificar.
 
 ```
   {card(id:377762484)
@@ -86,11 +91,11 @@ mutation{updateCardField(
       created_at
       description
       fields {
-        id #nombre interno del campo
+        id #nombre interno del campo para llamarlo y modificarlo
         index_name 
         internal_id
         description
-        label #nombre en la tarjeta
+        label #nombre en la tarjeta grafica
         phase {
           id #Id de la actual phase
         }
@@ -114,13 +119,6 @@ mutation{updateCardField(
     }
     }
     }
-
-
-
-
-
-
-
 
 
 ```
