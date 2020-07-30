@@ -33,6 +33,7 @@ https://graphql.org/learn/queries/
 ### Mutation
 
 ### Para mover la tarjeta 375966557 a la phase 308965557
+#### El perfil de Jesus no esta autorizado para sacar tarjetas desde N1 a N2 via API, pero si puede reversar a N1 y esa misma volver a sacar.
 ```
 mutation{moveCardToPhase(
   input:{
@@ -59,12 +60,28 @@ mutation{updateCard(
 }
   }
 ```
-### Para actualizar un campo de la tarjeta
-### Se utilizara UpdateCardInput para modificar el Grupo de Colaboradores:, dado por el "label": del "fields", de "current_phase"
-### En este caso asignacion
+### Para actualizar un campo en especifico de la tarjeta
 
-El field_id se toma desde el id de los fields de la current_phase. Aun asi queda como assignees
+#### Se utilizara UpdateCardInput para modificar el Grupo de Colaboradores:, dado por el "label": del "fields", de "current_phase"
+#### En este caso asignacion
 
+El field_id se toma desde el id de los fields de la current_phase.
+
+#### Para la identificacion de los grupo de colaboradores. La tarjeta debe estar en N2 (quedan como Assignes)
+```
+{
+"description": "",
+"id": "grupo_de_colaboradores",
+"index_name": "field_2_assignee_select",
+"internal_id": "317897997",
+"label": "Grupo de Colaboradores:",
+"phase": {
+"id": "308543346",
+"name": "Nível 2"
+}
+```
+
+#### Para el caso del grupo de colaboradores, solo en N2, se cambian con:
 ```
 mutation{updateCardField(
   input:{
@@ -78,10 +95,40 @@ mutation{updateCardField(
 }
   }
 ```
-### Para hacer la consulta de la card, rescatando el field a modificar.
+#### Para la identificacion de los ejecutivos de la mesa de servicios. La tarjeta debe estar en N1
+```
+{
+"description": "",
+"id": "ejecutivo_a_de_mesa_de_servicio",
+"index_name": "field_1_assignee_select",
+"internal_id": "317894376",
+"label": "Ejecutivo(a) de Mesa de Servicio:",
+"phase": {
+"id": "308543343"
+}
+```
+
+
+#### Para el caso de los ejecutivos de la mesa de servicios, solo en N1, se cambian con.
+El field_id se toma desde el id de los fields de la current_phase.
+```
+mutation{updateCardField(
+  input:{
+    card_id:" 378069198"
+    field_id:"ejecutivo_a_de_mesa_de_servicio"
+    new_value:["301047252"]
+    clientMutationId:"Cambio de asignacion"
+  }) {
+  clientMutationId
+  
+}
+  }
 
 ```
-  {card(id:377762484)
+
+### Para rescatar campos de la tarjeta, se esta optimizando la busqueda de los campos de la current phase.
+```
+{card(id:378069198)
   {
     title
     url
@@ -91,26 +138,14 @@ mutation{updateCardField(
       created_at
       description
       fields {
-        id #nombre interno del campo para llamarlo y modificarlo
-        index_name 
+        id
+        index_name
         internal_id
         description
-        label #nombre en la tarjeta grafica
+        label
         phase {
-          id #Id de la actual phase
+          id
         }
-      }
-    }
-    fields {
-			assignee_values {
-			  id
-			}
-      indexName
-      name
-      report_value
-      value
-      phase_field {
-        id
       }
     }
     assignees{
@@ -119,13 +154,7 @@ mutation{updateCardField(
     }
     }
     }
-
-
 ```
-
-
-
-
 
 
 
