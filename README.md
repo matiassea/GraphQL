@@ -178,6 +178,36 @@ phase (id:308543346){
 
 ```
 
+### Status de la tarjeta, consultando a los assignees.
+
+```
+{card(id:378069198)
+  {
+    title
+    age
+    url
+    checklist_items_count
+    checklist_items_checked_count
+    cardAssignees {
+      id
+      assignedAt
+      
+    }
+    current_phase{
+      id #Id de la phase
+      name
+      created_at
+      description
+    }
+    assignees{
+      id
+      name
+      email
+    }
+	}
+}
+```
+
 ### Consulta de la organizacion
 
 ```
@@ -242,6 +272,32 @@ pipe (id:301279586 ){
       }
     }
   }
+}
+```
+#### Para todas las cards de la unica Pipe, midel el tiempo de estadia (age) de la tarjeta y entrega el URL
+```
+{cards(pipe_id:301279586
+	first:2) {
+  edges {
+    node {
+      age
+      id
+#      current_phase {
+#        name
+#      }
+#      subtitles {
+#        filled_at
+#        indexName
+#        name
+#        report_value
+#        updated_at
+#        value
+#      }
+      url
+    }
+  }
+}
+
 }
 ```
 
