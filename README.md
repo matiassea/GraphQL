@@ -230,7 +230,6 @@ organization (id:355438){
 
 ### Status del Pipe, con el nombre de la organizacion, cantidad de tarjeta, cantidad de tarjetas expiradas por fases.
 
-
 ```
 query{
 pipe (id:301279586 ){
@@ -250,6 +249,35 @@ pipe (id:301279586 ){
 }
 }
 
+```
+### Status del Pipe, con el nombre de la organizacion, cantidad de tarjeta, cantidad de tarjetas expiradas por fases, asignados, age y URL
+```
+{cards(pipe_id:301279586
+	first:2000) {
+  edges {
+    node {
+      age
+      id
+      assignees {
+        name
+      }
+#      current_phase {
+#        name
+#      }
+#      subtitles {
+#        filled_at
+#        indexName
+#        name
+#        report_value
+#        updated_at
+#        value
+#      }
+      url
+    }
+  }
+}
+
+}
 ```
 
 #### tiempo de estadia de la tarjeta, mide el age que es la edad total en segundos y desglosa por cada fase
