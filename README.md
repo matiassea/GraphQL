@@ -138,7 +138,7 @@ mutation{updateCardField(
       created_at
       description
       fields {
-        id
+        id #Para el rescate del field_id
         index_name
         internal_id
         description
@@ -156,14 +156,141 @@ mutation{updateCardField(
     }
 ```
 
+### Status del phase, rescatando el nombre del phase, cantidad de tarjetas expiradas y cantidad de tarjetas por pipe
+
+```
+query{
+phase (id:308543346){
+  name
+  cards_count
+  lateCardsCount
+  cards {
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
+  expiredCardsCount
+}
+}
+
+```
+
+### Consulta de la organizacion
+
+```
+query{
+organization (id:355438){
+  name
+  tables {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+  }
+}
+}
+
+```
 
 
+### Status del Pipe, con el nombre de la organizacion, cantidad de tarjeta, cantidad de tarjetas expiradas por fases.
 
 
+```
+query{
+pipe (id:301279586 ){
+  organization {
+    id
+    name
+  }
+  cards_count
+  opened_cards_count
+	description
+  phases {
+    id
+    name
+    expiredCardsCount
+    cards_count
+  }
+}
+}
+
+```
+
+#### tiempo de estadia de la tarjeta, mide el age que es la edad total en segundos y desglosa por cada fase
+
+```
+{card(id:378069198)
+  {
+    title
+    url
+    age
+    phases_history {
+      created_at
+      duration
+      firstTimeIn
+      lastTimeIn
+      lastTimeOut
+      phase {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+#### Para rastrear las Tablas imputadas a una institucion
 
 
+```
+query{
+organization (id:355438){
+  name
+#  tables (name_search:"{SAMPLE} Departments") {
+  tables {
+  edges {
+      node {
+        id
+        name
+        public
+        table_fields {
+          id
+          label
+        }
+        table_records {
+          edges {
+            node {
+              id
+              labels {
+                id
+                name
+              }
+              parent_relations {
+                id
+                name
+              }
+              table {
+                id
+                title_field {
+                  id
+                }
+              }
+              path
+              url
+            }
+          }
+        }
+        table_records_count
+      }
+    }
+  }
+}
+}
 
-
-
-
-
+```
