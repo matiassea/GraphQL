@@ -156,7 +156,7 @@ mutation{updateCardField(
     }
 ```
 
-### Status del phase, rescatando el nombre del phase, cantidad de tarjetas expiradas y cantidad de tarjetas por pipe
+#### Status del phase, rescatando el nombre del phase, cantidad de tarjetas expiradas y cantidad de tarjetas por pipe
 
 ```
 query{
@@ -178,7 +178,36 @@ phase (id:308543346){
 
 ```
 
-### Status de la tarjeta, consultando a los assignees.
+```
+query{
+pipe (id:301279586 ){
+  organization {
+    id
+    name
+  }
+  cards_count
+  opened_cards_count
+	description
+  phases {
+    id
+    name 
+    expiredCardsCount
+    cards_count
+    done
+  }
+  users {
+    id
+    name
+    username
+  }
+  users_count
+}
+}
+```
+
+
+
+#### Status de la tarjeta, consultando a los assignees.
 
 ```
 {card(id:378069198)
