@@ -239,6 +239,8 @@ pipe (id:301279586 ){
 
 ### Consulta de la organizacion
 
+#### Consulta a nivel de organizacion, rescatando las Tables
+
 ```
 query{
 organization (id:355438){
@@ -255,9 +257,36 @@ organization (id:355438){
 }
 
 ```
+#### Consulta a nivel de organizacion, de las tarjetas por fases, expiradas. Usuarios, nombres y ID
+```
+query{
+pipe (id:301279586 ){
+  organization {
+    id
+    name
+  }
+  cards_count
+  opened_cards_count
+	description
+  phases {
+    id
+    name 
+    expiredCardsCount
+    cards_count
+    done
+  }
+  users {
+    id
+    name
+    username
+  }
+  users_count
+}
+}
+```
 
-
-### Status del Pipe, con el nombre de la organizacion, cantidad de tarjeta, cantidad de tarjetas expiradas por fases.
+### Consulta a nivel de Pipe
+#### Status del Pipe, con el nombre de la organizacion, cantidad de tarjeta, cantidad de tarjetas expiradas por fases.
 
 ```
 query{
@@ -279,7 +308,7 @@ pipe (id:301279586 ){
 }
 
 ```
-### Status del Pipe, con el nombre de la organizacion, cantidad de tarjeta, cantidad de tarjetas expiradas por fases, asignados, age y URL
+#### Status del Pipe, con el nombre de la organizacion, cantidad de tarjeta, cantidad de tarjetas expiradas por fases, asignados, age y URL
 ```
 {cards(pipe_id:301279586
 	first:2000) {
@@ -309,6 +338,7 @@ pipe (id:301279586 ){
 }
 ```
 
+### Consulta a nivel de Card
 #### tiempo de estadia de la tarjeta, mide el age que es la edad total en segundos y desglosa por cada fase
 
 ```
@@ -357,10 +387,38 @@ pipe (id:301279586 ){
 
 }
 ```
+#### Consulta a nivel de Card, filtrando por assignee
+```
+{cards(pipe_id:301279586,
+	first:2000,search:{assignee_ids:["301048281"]}) {
+  edges {
+    node {
+      age
+      id
+#      assignees {
+#        name
+#      }
+#      current_phase {
+#        name
+#      }
+#      subtitles {
+#        filled_at
+#        indexName
+#        name
+#        report_value
+#        updated_at
+#        value
+#      }
+      url
+      expired
+    }
+  }
+}
+}
 
+```
+### Tabla
 #### Para rastrear las Tablas imputadas a una institucion
-
-
 ```
 query{
 organization (id:355438){
