@@ -337,6 +337,22 @@ pipe (id:301279586 ){
 
 }
 ```
+#### Status del Pipe a nombre de usuario, email, username 
+```
+query{
+pipe (id:301279586 ){
+  users {
+    id
+    name
+    username
+    displayName
+    email
+  }
+}
+}
+
+```
+
 
 ### Consulta a nivel de Card
 #### tiempo de estadia de la tarjeta, mide el age que es la edad total en segundos y desglosa por cada fase
