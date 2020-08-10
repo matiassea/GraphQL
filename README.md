@@ -352,6 +352,32 @@ pipe (id:301279586 ){
 }
 
 ```
+#### Status del Pipe a SLA (hrs), URL, phase y asignados. 
+```
+{cards(pipe_id:301279586
+	first:2000) {
+  edges {
+    node {
+      age
+      id
+      current_phase {
+        name
+      }
+      createdAt
+      assignees {
+        name
+      }
+      url
+    }
+  }
+}
+}```
+
+
+
+
+
+
 
 
 ### Consulta a nivel de Card
