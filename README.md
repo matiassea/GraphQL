@@ -371,14 +371,8 @@ pipe (id:301279586 ){
     }
   }
 }
-}```
-
-
-
-
-
-
-
+}
+```
 
 ### Consulta a nivel de Card
 #### tiempo de estadia de la tarjeta, mide el age que es la edad total en segundos y desglosa por cada fase
