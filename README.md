@@ -29,7 +29,67 @@ https://graphql.org/learn/queries/
 }
 
 ```
-
+#### Obtencion de los email de las tarjetas, URL, phase y el historial de las phases.
+```
+{card(id:383943698)
+  {
+    title
+    url
+    age
+    current_phase {
+      id
+      name
+    }
+    fields {
+      array_value
+      date_value
+      datetime_value
+      filled_at
+      float_value
+      indexName
+      name
+      report_value
+      updated_at
+      value
+    }
+    creatorEmail
+    inbox_emails {
+      id
+      attachments {
+        id
+        filename
+      }
+      clean_body
+      from
+      fromName
+      sent_via_automation
+      main_to
+      user {
+        id
+      }
+      to
+      cc
+      bcc
+      card {
+        id
+      }
+    }
+    done
+    emailMessagingAddress
+#    phases_history {
+#      created_at
+#      duration
+#      firstTimeIn
+#      lastTimeIn
+#      lastTimeOut
+#      phase {
+#        id
+#        name
+#      }
+#     }
+  }
+}
+```
 ### Mutation
 
 ### Para mover la tarjeta 375966557 a la phase 308965557
