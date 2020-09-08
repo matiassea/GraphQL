@@ -561,3 +561,20 @@ organization (id:355438){
 }
 
 ```
+### Crear tarjeta
+```
+mutation{createCard(
+  input:{
+    pipe_id:"301279586"
+    fields_attributes:[
+      {fiel_id:"field_243_string",field_value:"384020586"}     
+    ]
+  }) 
+  {
+  card{
+    id
+    title
+  }
+}
+}
+```
